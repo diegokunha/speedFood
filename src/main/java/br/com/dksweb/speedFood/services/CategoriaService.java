@@ -14,6 +14,9 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repository;
 
+	/*
+	 * Lista as Categorias por ID 
+	 * */
 	public Categoria find(Integer id) {
 		Optional<Categoria> obj = repository.findById(id);
 		return obj.orElse(null);
