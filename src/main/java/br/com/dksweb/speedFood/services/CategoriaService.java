@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.dksweb.speedFood.domain.Categoria;
 import br.com.dksweb.speedFood.repositories.CategoriaRepository;
+import br.com.dksweb.speedFood.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
@@ -19,7 +20,8 @@ public class CategoriaService {
 	 * */
 	public Categoria find(Integer id) {
 		Optional<Categoria> obj = repository.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+		"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
 	}
 
 }
